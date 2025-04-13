@@ -1,0 +1,444 @@
+/* ==================== */
+/* ANIMATIONS PRINCIPALES */
+/* ==================== */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ==================== */
+/* ANIMATIONS DES CROQUETTES */
+/* ==================== */
+
+.kibble-main-animation {
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.kibble-particle {
+  position: absolute;
+  animation-timing-function: cubic-bezier(0.3, 0.7, 0.4, 1);
+  pointer-events: none;
+}
+
+@keyframes kibble-float {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8; /* Reste visible plus longtemps */
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--x-end), var(--y-end))
+      rotate(var(--rotation));
+    opacity: 0;
+  }
+}
+
+/* ==================== */
+/* STRUCTURE DE BASE */
+/* ==================== */
+
+body {
+  background: linear-gradient(-45deg, #00eff8, #f800b4, #ebf503, #02f6c1);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Silkscreen", cursive;
+  color: white;
+  overflow-x: hidden;
+  touch-action: manipulation;
+}
+
+.upgrade-btn,
+.toast {
+  font-family: "Silkscreen", cursive;
+  font-weight: 400; /* Version plus légère */
+  letter-spacing: 0.5px;
+}
+/* ==================== */
+/* ÉLÉMENTS DE JEU */
+/* ==================== */
+.nyancatgif {
+  max-width: 500px;
+  width: 100%;
+  animation: float 3.5s ease-in-out infinite, pulse 2s infinite;
+  cursor: pointer;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.nyancatgif:active {
+  transform: scale(0.95);
+  transition: transform 0.1s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ==================== */
+/* ANIMATIONS DES CROQUETTES */
+/* ==================== */
+
+.kibble-main-animation {
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.kibble-particle {
+  position: absolute;
+  animation-timing-function: cubic-bezier(0.3, 0.7, 0.4, 1);
+  pointer-events: none;
+}
+
+@keyframes kibble-float {
+  from {
+    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  to {
+    transform: translate(-50%, -50%) translate(var(--x-end), var(--y-end))
+      rotate(var(--rotation));
+    opacity: 0;
+    filter: brightness(0.5);
+  }
+}
+
+/* Boutique */
+.kibble-item {
+  transition: all 0.3s ease;
+}
+
+.kibble-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* DYNAMIC VARIATIONS */
+@keyframes kibble-fly-0 {
+  100% {
+    transform: translate(
+      calc(-50% + var(--x-offset, 50px)),
+      calc(-50% + var(--y-offset, -100px))
+    );
+    opacity: 0;
+  }
+}
+
+@keyframes kibble-fly-1 {
+  100% {
+    transform: translate(
+      calc(-50% + var(--x-offset, -30px)),
+      calc(-50% + var(--y-offset, -80px))
+    );
+    opacity: 0;
+  }
+}
+
+@keyframes kibble-fly-2 {
+  100% {
+    transform: translate(
+      calc(-50% + var(--x-offset, 20px)),
+      calc(-50% + var(--y-offset, -120px))
+    );
+    opacity: 0;
+  }
+}
+
+/* ==================== */
+/* BOUTIQUE & SKINS */
+/* ==================== */
+#kibbleShop {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.kibble-item {
+  background: rgba(76, 29, 149, 0.8);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  border: 3px solid transparent;
+  backdrop-filter: blur(5px);
+}
+
+.kibble-item:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.active-skin {
+  border-color: #4ade80 !important;
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.7);
+  transform: scale(1.05);
+}
+
+/* ==================== */
+/* TOASTS ULTRA VISIBLES */
+/* ==================== */
+.toast-container {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  pointer-events: none;
+  width: 95%;
+  max-width: 420px;
+}
+
+.toast {
+  padding: 18px 24px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  animation: toastSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    toastStay 5s linear 0.6s forwards, toastFadeOut 0.6s ease-in 5.6s forwards;
+  opacity: 0;
+  transform: translateY(120px);
+  backdrop-filter: blur(12px);
+  border-left: 8px solid;
+  background: rgba(
+    20,
+    20,
+    30,
+    0.92
+  ) !important; /* Fond sombre semi-transparent */
+  backdrop-filter: blur(8px);
+  border: 2px solid;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes toastSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastStay {
+  from,
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastFadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+
+.toast-success {
+  color: #d1fae5 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+}
+
+.toast-error {
+  color: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+}
+
+.toast-info {
+  color: #dbeafe !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+}
+
+.toast-icon {
+  font-size: 1.8rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* ==================== */
+/* BOUTONS & INTERFACE */
+/* ==================== */
+.upgrade-btn {
+  font-size: 0.9rem;
+  padding: 0.8rem 1.2rem;
+  background: rgba(30, 30, 46, 0.85);
+  border: 2px solid #4f46e5;
+  transition: all 0.2s ease;
+}
+.upgrade-btn:hover {
+  background: rgba(55, 55, 85, 0.9);
+  transform: translateY(-3px);
+}
+
+.upgrade-btn:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+/* ==================== */
+/* RESPONSIVE */
+/* ==================== */
+@media (max-width: 768px) {
+  .nyancatgif {
+    max-width: 320px;
+    animation: float 3s ease-in-out infinite, pulse 1.8s infinite;
+  }
+
+  #kibbleShop {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .toast {
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    max-width: 90%;
+  }
+
+  .toast-icon {
+    font-size: 1.5rem;
+  }
+  .kibble-particle img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+/* ==================== */
+/* EFFETS SPECIAUX */
+/* ==================== */
+@keyframes rainbowGlow {
+  0% {
+    filter: hue-rotate(0deg) brightness(1.1);
+  }
+  100% {
+    filter: hue-rotate(360deg) brightness(1.1);
+  }
+}
+
+.premium-toast {
+  animation: toastSlideIn 0.6s forwards, rainbowGlow 3s linear infinite,
+    toastStay 5s linear 0.6s forwards, toastFadeOut 0.6s ease-in 5.6s forwards;
+}
+
+/* Centrage pour desktop */
+@media (min-width: 768px) {
+  .gamedisplay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh; /* Ajustez cette valeur selon vos besoins */
+  }
+
+  .nyancatgif {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+/* Pour les très grands écrans */
+@media (min-width: 1200px) {
+  .nyancatgif {
+    max-width: 600px;
+  }
+}
+
+/* ==================== */
+/* POLICES */
+/* ==================== */
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
+/*Ce qui change :*/
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
