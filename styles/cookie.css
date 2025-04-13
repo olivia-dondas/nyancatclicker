@@ -151,8 +151,8 @@ body {
 }
 
 .game-header {
+  margin-top: 5rem; /* Ajustez la marge pour tous les écrans */
   text-align: center;
-  margin-bottom: 2rem;
 }
 
 .game-header h1 {
@@ -160,6 +160,7 @@ body {
   font-weight: bold;
   text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   animation: pulse 2s infinite;
+  margin-bottom: 1rem; /* Espacement entre le titre principal et le sous-titre */
 }
 
 .game-header h2 {
@@ -231,6 +232,17 @@ body {
   border-color: var(--color-success) !important;
   box-shadow: 0 0 20px rgba(74, 222, 128, 0.7);
   transform: scale(1.05);
+}
+
+#shopPanel {
+  transform: translateX(
+    100%
+  ); /* Masque le shop en le déplaçant hors de l'écran */
+  transition: transform 0.3s ease-in-out;
+}
+
+#shopPanel.open {
+  transform: translateX(0); /* Affiche le shop lorsqu'il a la classe "open" */
 }
 
 /* ==================== */
@@ -351,6 +363,10 @@ body {
     width: 30px !important;
     height: 30px !important;
   }
+
+  .game-header {
+    margin-top: 5rem; /* Plus d'espace pour les petits écrans */
+  }
 }
 
 @media (min-width: 768px) {
@@ -374,4 +390,11 @@ body {
   .nyancatgif {
     max-width: 600px;
   }
+}
+
+/* ==================== */
+/* GAME CONTAINER */
+/* ==================== */
+.game-container {
+  padding-top: 3rem; /* Ajoute un espacement supérieur global */
 }

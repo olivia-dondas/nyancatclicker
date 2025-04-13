@@ -492,3 +492,22 @@ function updateKibbleCount() {
     kibbleCount.classList.remove("kibble-bounce");
   }, 300);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const shopToggle = document.getElementById("shopToggle");
+  const shopPanel = document.getElementById("shopPanel");
+  const closeShopBtn = document.getElementById("closeShopBtn");
+
+  // Fermer le shop par défaut
+  shopPanel.classList.remove("open");
+
+  // Basculer l'état du shop (ouvrir/fermer)
+  shopToggle.addEventListener("click", () => {
+    shopPanel.classList.toggle("open");
+  });
+
+  // Fermer le shop avec le bouton "Retour"
+  closeShopBtn.addEventListener("click", () => {
+    shopPanel.classList.remove("open");
+  });
+});
