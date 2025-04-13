@@ -74,6 +74,18 @@
   }
 }
 
+@keyframes kibble-bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 /* ==================== */
 /* STRUCTURE DE BASE */
 /* ==================== */
@@ -95,6 +107,30 @@ body {
   font-family: "Silkscreen", cursive;
   font-weight: 400; /* Version plus légère */
   letter-spacing: 0.5px;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.game-header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.game-header h2 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: #facc15; /* Couleur dorée pour les croquettes */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  border: 2px solid #facc15;
 }
 /* ==================== */
 /* ÉLÉMENTS DE JEU */
@@ -188,6 +224,18 @@ body {
 /* Boutique */
 .kibble-item {
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  background-color: #4c1d95; /* Couleur de fond légèrement plus claire */
+  border-radius: 8px;
+}
+.kibble-item img {
+  max-width: 80px; /* Réduit la largeur maximale */
+  max-height: 80px; /* Réduit la hauteur maximale */
+  margin: 0 auto; /* Centre l'image */
 }
 
 .kibble-item:hover {
@@ -442,3 +490,8 @@ body {
 @import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 /*Ce qui change :*/
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+#kibbleCount {
+  display: inline-block;
+  animation: kibble-bounce 0.3s ease-in-out;
+}
