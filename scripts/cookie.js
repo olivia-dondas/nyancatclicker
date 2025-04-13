@@ -146,6 +146,8 @@ function handleNyanCatClick(e) {
     saveScore();
     lastClickTime = now;
   }
+
+  updateGif();
 }
 
 /* ==================== */
@@ -328,14 +330,19 @@ function showToast(message, type) {
 // Charge la liste des skins de Nyan Cat
 function loadGifs() {
   fetch("data/skins.json")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erreur lors du chargement des GIFs.");
+      }
+      return response.json();
+    })
     .then((data) => {
       gifs = data;
       updateGif(); // Met à jour le GIF immédiatement après le chargement
     })
-    .catch((error) =>
-      console.error("Erreur lors du chargement des GIFs:", error)
-    );
+    .catch((error) => {
+      console.error("Erreur lors du chargement des GIFs :", error);
+    });
 }
 
 // Réinitialise le jeu
@@ -402,6 +409,34 @@ setInterval(() => {
     saveScore();
   }
 }, 1000);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("backgroundMusic");
+  const kibbleSection = document.getElementById("kibble");
+
+  // Fonction pour démarrer la musique
+  const playMusic = () => {
+    if (music.paused) {
+      music.play().catch((error) => {
+        console.error("Erreur lors de la lecture de la musique :", error);
+      });
+    }
+  };
+
+  // Fonction pour arrêter la musique
+  const pauseMusic = () => {
+    if (!music.paused) {
+      music.pause();
+    }
+  };
+
+  // Ajouter les événements pour démarrer et arrêter la musique
+  kibbleSection.addEventListener("mousedown", playMusic); // Démarre la musique au clic
+  kibbleSection.addEventListener("mouseup", pauseMusic); // Arrête la musique au relâchement
+
+  // Optionnel : Arrêter la musique si le clic sort de la zone
+  kibbleSection.addEventListener("mouseleave", pauseMusic);
+});
 
 // Démarrer le jeu
 initGame();
