@@ -9,6 +9,10 @@ let gifs = []; // Liste des GIFs chargée dynamiquement
 let activeKibbleImage = "assets/kibble/default.png"; // Image active par défaut
 let purchasedSkins = []; // Liste des skins achetés
 let lastClickTime = 0;
+let music = document.getElementById("backgroundMusic");
+let lastMusicPosition = 0;
+let musicTimeout;
+let audioEnabled = false;
 // Éléments HTML
 const kibbleDisplay = document.getElementById("kibble");
 const kibbleCount = document.getElementById("kibbleCount");
@@ -364,6 +368,7 @@ function resetGame() {
     updateDisplay();
     loadKibbleShop();
     showToast("Jeu réinitialisé!", "info");
+    setupMusicControls();
   }
 }
 
@@ -410,33 +415,80 @@ setInterval(() => {
   }
 }, 1000);
 
-document.addEventListener("DOMContentLoaded", () => {
-  const music = document.getElementById("backgroundMusic");
-  const kibbleSection = document.getElementById("kibble");
+/* ==================== */
+/*  GESTION DE LA MUSIQUE */
+/* ==================== */
 
-  // Fonction pour démarrer la musique
-  const playMusic = () => {
-    if (music.paused) {
-      music.play().catch((error) => {
-        console.error("Erreur lors de la lecture de la musique :", error);
-      });
-    }
-  };
+let musicEnabled = false;
+let musicFadeInterval = null;
 
-  // Fonction pour arrêter la musique
-  const pauseMusic = () => {
-    if (!music.paused) {
+// Activation audio au premier clic
+function enableAudio() {
+  if (musicEnabled) return;
+
+  music.volume = 0.5;
+  music
+    .play()
+    .then(() => {
       music.pause();
+      music.currentTime = 0;
+      musicEnabled = true;
+      document.removeEventListener("click", enableAudio);
+    })
+    .catch((e) => console.error("Audio error:", e));
+}
+
+// Fondu de sortie
+function fadeOutMusic() {
+  const fadeDuration = 400; // 0.4 secondes
+  const steps = 10;
+  const stepTime = fadeDuration / steps;
+  const volumeStep = music.volume / steps;
+
+  clearInterval(musicFadeInterval);
+
+  musicFadeInterval = setInterval(() => {
+    if (music.volume > volumeStep) {
+      music.volume -= volumeStep;
+    } else {
+      music.pause();
+      music.volume = 0.5; // Reset volume
+      clearInterval(musicFadeInterval);
     }
-  };
+  }, stepTime);
+}
 
-  // Ajouter les événements pour démarrer et arrêter la musique
-  kibbleSection.addEventListener("mousedown", playMusic); // Démarre la musique au clic
-  kibbleSection.addEventListener("mouseup", pauseMusic); // Arrête la musique au relâchement
+// Gestion du clic
+nyanCatGif.addEventListener("click", () => {
+  if (!musicEnabled) {
+    enableAudio();
+    return;
+  }
 
-  // Optionnel : Arrêter la musique si le clic sort de la zone
-  kibbleSection.addEventListener("mouseleave", pauseMusic);
+  // Relancer la musique si besoin
+  if (music.paused) {
+    music.currentTime = 0;
+    music.volume = 0.5;
+    music.play().catch((e) => console.error("Play error:", e));
+  }
+
+  // Réinitialiser le timer de fondu
+  clearTimeout(music.pauseTimer);
+  music.pauseTimer = setTimeout(fadeOutMusic, 800); // 0.8s avant fondu
 });
 
-// Démarrer le jeu
+// Initialisation
+document.addEventListener("click", enableAudio);
+music.volume = 0.5;
 initGame();
+
+function updateKibbleCount() {
+  const kibbleCount = document.getElementById("kibbleCount");
+  kibbleCount.textContent = kibbles;
+
+  // Ajoute une animation temporaire
+  kibbleCount.classList.add("kibble-bounce");
+  setTimeout(() => {
+    kibbleCount.classList.remove("kibble-bounce");
+  }, 300);
+}

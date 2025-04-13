@@ -1,5 +1,22 @@
 /* ==================== */
-/* ANIMATIONS PRINCIPALES */
+/* IMPORTS DE POLICES */
+/* ==================== */
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* ==================== */
+/* VARIABLES CSS */
+/* ==================== */
+:root {
+  --color-primary: #4f46e5;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #facc15;
+  --color-bg-dark: rgba(20, 20, 30, 0.92);
+}
+
+/* ==================== */
+/* ANIMATIONS GLOBALES */
 /* ==================== */
 @keyframes float {
   0%,
@@ -44,33 +61,17 @@
   }
 }
 
-/* ==================== */
-/* ANIMATIONS DES CROQUETTES */
-/* ==================== */
-
-.kibble-main-animation {
-  transition: transform 0.3s ease-out;
-  will-change: transform;
-}
-
-.kibble-particle {
-  position: absolute;
-  animation-timing-function: cubic-bezier(0.3, 0.7, 0.4, 1);
-  pointer-events: none;
-}
-
 @keyframes kibble-float {
-  0% {
+  from {
     transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
     opacity: 1;
+    filter: brightness(1);
   }
-  70% {
-    opacity: 0.8; /* Reste visible plus longtemps */
-  }
-  100% {
+  to {
     transform: translate(-50%, -50%) translate(var(--x-end), var(--y-end))
       rotate(var(--rotation));
     opacity: 0;
+    filter: brightness(0.5);
   }
 }
 
@@ -86,10 +87,40 @@
   }
 }
 
+@keyframes toastSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastStay {
+  from,
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastFadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes rainbowGlow {
+  0% {
+    filter: hue-rotate(0deg) brightness(1.1);
+  }
+  100% {
+    filter: hue-rotate(360deg) brightness(1.1);
+  }
+}
+
 /* ==================== */
 /* STRUCTURE DE BASE */
 /* ==================== */
-
 body {
   background: linear-gradient(-45deg, #00eff8, #f800b4, #ebf503, #02f6c1);
   background-size: 400% 400%;
@@ -102,11 +133,21 @@ body {
   touch-action: manipulation;
 }
 
-.upgrade-btn,
-.toast {
-  font-family: "Silkscreen", cursive;
-  font-weight: 400; /* Version plus légère */
-  letter-spacing: 0.5px;
+/* ==================== */
+/* ÉLÉMENTS DE JEU PRINCIPAUX */
+/* ==================== */
+.nyancatgif {
+  max-width: 500px;
+  width: 100%;
+  animation: float 3.5s ease-in-out infinite, pulse 2s infinite;
+  cursor: pointer;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.nyancatgif:active {
+  transform: scale(0.95);
+  transition: transform 0.1s;
 }
 
 .game-header {
@@ -124,78 +165,23 @@ body {
 .game-header h2 {
   font-size: 2rem;
   margin-top: 1rem;
-  color: #facc15; /* Couleur dorée pour les croquettes */
+  color: var(--color-warning);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: inline-block;
   padding: 0.5rem 1rem;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 12px;
-  border: 2px solid #facc15;
-}
-/* ==================== */
-/* ÉLÉMENTS DE JEU */
-/* ==================== */
-.nyancatgif {
-  max-width: 500px;
-  width: 100%;
-  animation: float 3.5s ease-in-out infinite, pulse 2s infinite;
-  cursor: pointer;
-  image-rendering: pixelated;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+  border: 2px solid var(--color-warning);
 }
 
-.nyancatgif:active {
-  transform: scale(0.95);
-  transition: transform 0.1s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.85;
-  }
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes clickEffect {
-  0% {
-    transform: scale(0.8);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
+#kibbleCount {
+  display: inline-block;
+  animation: kibble-bounce 0.3s ease-in-out;
 }
 
 /* ==================== */
 /* ANIMATIONS DES CROQUETTES */
 /* ==================== */
-
 .kibble-main-animation {
   transition: transform 0.3s ease-out;
   will-change: transform;
@@ -205,73 +191,6 @@ body {
   position: absolute;
   animation-timing-function: cubic-bezier(0.3, 0.7, 0.4, 1);
   pointer-events: none;
-}
-
-@keyframes kibble-float {
-  from {
-    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
-    opacity: 1;
-    filter: brightness(1);
-  }
-  to {
-    transform: translate(-50%, -50%) translate(var(--x-end), var(--y-end))
-      rotate(var(--rotation));
-    opacity: 0;
-    filter: brightness(0.5);
-  }
-}
-
-/* Boutique */
-.kibble-item {
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  background-color: #4c1d95; /* Couleur de fond légèrement plus claire */
-  border-radius: 8px;
-}
-.kibble-item img {
-  max-width: 80px; /* Réduit la largeur maximale */
-  max-height: 80px; /* Réduit la hauteur maximale */
-  margin: 0 auto; /* Centre l'image */
-}
-
-.kibble-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* DYNAMIC VARIATIONS */
-@keyframes kibble-fly-0 {
-  100% {
-    transform: translate(
-      calc(-50% + var(--x-offset, 50px)),
-      calc(-50% + var(--y-offset, -100px))
-    );
-    opacity: 0;
-  }
-}
-
-@keyframes kibble-fly-1 {
-  100% {
-    transform: translate(
-      calc(-50% + var(--x-offset, -30px)),
-      calc(-50% + var(--y-offset, -80px))
-    );
-    opacity: 0;
-  }
-}
-
-@keyframes kibble-fly-2 {
-  100% {
-    transform: translate(
-      calc(-50% + var(--x-offset, 20px)),
-      calc(-50% + var(--y-offset, -120px))
-    );
-    opacity: 0;
-  }
 }
 
 /* ==================== */
@@ -291,6 +210,10 @@ body {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
   border: 3px solid transparent;
   backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .kibble-item:hover {
@@ -298,14 +221,20 @@ body {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
+.kibble-item img {
+  max-width: 80px;
+  max-height: 80px;
+  margin: 0 auto;
+}
+
 .active-skin {
-  border-color: #4ade80 !important;
+  border-color: var(--color-success) !important;
   box-shadow: 0 0 20px rgba(74, 222, 128, 0.7);
   transform: scale(1.05);
 }
 
 /* ==================== */
-/* TOASTS ULTRA VISIBLES */
+/* TOASTS */
 /* ==================== */
 .toast-container {
   position: fixed;
@@ -336,54 +265,26 @@ body {
   transform: translateY(120px);
   backdrop-filter: blur(12px);
   border-left: 8px solid;
-  background: rgba(
-    20,
-    20,
-    30,
-    0.92
-  ) !important; /* Fond sombre semi-transparent */
-  backdrop-filter: blur(8px);
+  background: var(--color-bg-dark);
   border: 2px solid;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes toastSlideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes toastStay {
-  from,
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes toastFadeOut {
-  to {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-}
-
 .toast-success {
   color: #d1fae5 !important;
-  border-color: #10b981 !important;
+  border-color: var(--color-success) !important;
   box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
 }
 
 .toast-error {
   color: #fee2e2 !important;
-  border-color: #ef4444 !important;
+  border-color: var(--color-error) !important;
   box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
 }
 
 .toast-info {
   color: #dbeafe !important;
-  border-color: #3b82f6 !important;
+  border-color: var(--color-primary) !important;
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
 }
 
@@ -393,16 +294,25 @@ body {
   text-align: center;
 }
 
+.premium-toast {
+  animation: toastSlideIn 0.6s forwards, rainbowGlow 3s linear infinite,
+    toastStay 5s linear 0.6s forwards, toastFadeOut 0.6s ease-in 5.6s forwards;
+}
+
 /* ==================== */
 /* BOUTONS & INTERFACE */
 /* ==================== */
 .upgrade-btn {
+  font-family: "Silkscreen", cursive;
+  font-weight: 400;
+  letter-spacing: 0.5px;
   font-size: 0.9rem;
   padding: 0.8rem 1.2rem;
   background: rgba(30, 30, 46, 0.85);
-  border: 2px solid #4f46e5;
+  border: 2px solid var(--color-primary);
   transition: all 0.2s ease;
 }
+
 .upgrade-btn:hover {
   background: rgba(55, 55, 85, 0.9);
   transform: translateY(-3px);
@@ -413,7 +323,7 @@ body {
 }
 
 /* ==================== */
-/* RESPONSIVE */
+/* LAYOUT RESPONSIVE */
 /* ==================== */
 @media (max-width: 768px) {
   .nyancatgif {
@@ -436,37 +346,20 @@ body {
   .toast-icon {
     font-size: 1.5rem;
   }
+
   .kibble-particle img {
     width: 30px !important;
     height: 30px !important;
   }
 }
 
-/* ==================== */
-/* EFFETS SPECIAUX */
-/* ==================== */
-@keyframes rainbowGlow {
-  0% {
-    filter: hue-rotate(0deg) brightness(1.1);
-  }
-  100% {
-    filter: hue-rotate(360deg) brightness(1.1);
-  }
-}
-
-.premium-toast {
-  animation: toastSlideIn 0.6s forwards, rainbowGlow 3s linear infinite,
-    toastStay 5s linear 0.6s forwards, toastFadeOut 0.6s ease-in 5.6s forwards;
-}
-
-/* Centrage pour desktop */
 @media (min-width: 768px) {
   .gamedisplay {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 60vh; /* Ajustez cette valeur selon vos besoins */
+    height: 60vh;
   }
 
   .nyancatgif {
@@ -477,21 +370,8 @@ body {
   }
 }
 
-/* Pour les très grands écrans */
 @media (min-width: 1200px) {
   .nyancatgif {
     max-width: 600px;
   }
-}
-
-/* ==================== */
-/* POLICES */
-/* ==================== */
-@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
-/*Ce qui change :*/
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-
-#kibbleCount {
-  display: inline-block;
-  animation: kibble-bounce 0.3s ease-in-out;
 }
