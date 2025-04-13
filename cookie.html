@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Nyan Cat Clicker</title>
+    <link rel="icon" href="assets/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/cookie.js" defer></script>
+    <link rel="stylesheet" href="styles/cookie.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-white">
+    <div class="game-container">
+      <div class="flex flex-col md:flex-row min-h-screen">
+        <main class="flex-1 p-4 md:w-3/4">
+          <h1 class="text-4xl font-bold mb-4">Nyan Cat Clicker</h1>
+          <h2 class="text-3xl font-bold my-4 p-4">
+            Croquettes : <span id="kibbleCount">0</span>
+          </h2>
+
+          <section
+            class="gamedisplay my-8 mx-auto flex justify-center items-center"
+            id="kibble"
+          >
+            <img
+              class="nyancatgif cursor-pointer mx-auto select-none"
+              src="assets/skins/originalnyan.gif"
+              alt="Nyan Cat cliquable"
+              draggable="false"
+            />
+          </section>
+        </main>
+
+        <button
+          id="shopToggle"
+          class="md:hidden fixed right-4 bottom-4 bg-purple-700 p-4 rounded-full z-50"
+        >
+          🛍️
+        </button>
+
+        <aside
+          id="shopPanel"
+          class="fixed inset-y-0 right-0 w-72 bg-purple-900 p-6 transform translate-x-full md:translate-x-0 md:relative transition-transform duration-300 z-40 overflow-y-auto"
+        >
+          <h3 class="text-2xl font-bold mb-6 text-center">Boutique</h3>
+
+          <div class="space-y-4">
+            <button
+              id="autoClickerBtn"
+              class="upgrade-btn w-full bg-cyan-600 hover:bg-cyan-700 p-4 rounded-xl"
+            >
+              <div class="font-bold text-lg">🐾 AutoClicker</div>
+              <div>Coût : 50 croquettes</div>
+              <div>Possédé : <span id="autoClickers">0</span></div>
+            </button>
+
+            <button
+              id="doubleClickerBtn"
+              class="upgrade-btn w-full bg-cyan-600 hover:bg-cyan-700 p-4 rounded-xl"
+            >
+              <div class="font-bold text-lg">⚡ DoubleClicker</div>
+              <div>Coût : 100 croquettes</div>
+              <div>Possédé : <span id="doubleClicker">0</span></div>
+            </button>
+
+            <button
+              id="multiplierBtn"
+              class="upgrade-btn w-full bg-cyan-600 hover:bg-cyan-700 p-4 rounded-xl"
+            >
+              <div class="font-bold text-lg">✨ Multiplicateur</div>
+              <div>Coût : <span id="multiplierCost">200</span> croquettes</div>
+              <div>Possédé : <span id="multipliers">0</span></div>
+            </button>
+          </div>
+
+          <div class="upgrade-item mt-6">
+            <h3 class="text-xl font-bold mb-4 text-center">
+              Boutique de Skins
+            </h3>
+            <div id="kibbleShop" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Les skins seront chargés ici -->
+              <div class="text-center p-4 bg-purple-900 rounded-lg">
+                Chargement des skins...
+              </div>
+            </div>
+          </div>
+
+          <button
+            id="resetGameBtn"
+            class="upgrade-btn w-full bg-red-600 hover:bg-red-700 p-4 rounded-xl mt-6"
+          >
+            Réinitialiser la partie
+          </button>
+        </aside>
+      </div>
+    </div>
+    <div id="toastContainer" class="toast-container"></div>
+  </body>
+</html>
