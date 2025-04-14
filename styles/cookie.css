@@ -204,68 +204,154 @@ html {
 /* ==================== */
 /* BOUTIQUE & SKINS */
 /* ==================== */
-#kibbleShop {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
-  padding: 1.5rem;
-}
-
-.kibble-item {
-  background: rgba(76, 29, 149, 0.8);
-  border-radius: 16px;
-  padding: 1.5rem;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-  border: 3px solid transparent;
-  backdrop-filter: blur(5px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.kibble-item:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-.kibble-item img {
-  max-width: 80px;
-  max-height: 80px;
-  margin: 0 auto;
-}
-
-.active-skin {
-  border-color: var(--color-success) !important;
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.7);
-  transform: scale(1.05);
-}
-
 #shopPanel {
   position: fixed;
-  top: 0; /* Place le panel en haut de la fenêtre */
+  top: 0;
   right: 0;
-  margin: 0; /* Supprime toute marge résiduelle */
-  padding-top: 20px;
   width: 100%; /* Par défaut, occupe toute la largeur sur mobile */
   max-width: 400px; /* Limite la largeur sur desktop */
-  height: 100vh; /* Occupe toute la hauteur de la fenêtre */
-  background-color: rgba(20, 20, 30, 0.95); /* Fond sombre */
+  height: 100vh; /* Occupe toute la hauteur */
+  background-color: #1a1a2e; /* Fond principal harmonisé */
+  color: #ffffff; /* Texte principal */
   transform: translateX(
     100%
   ); /* Masque le shop en le déplaçant hors de l'écran */
   transition: transform 0.3s ease-in-out;
   z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
   overflow-y: auto; /* Permet le défilement si le contenu dépasse la hauteur */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Ajoute une ombre pour le style */
+  border-left: 4px solid #4f46e5; /* Accent bleu électrique */
 }
 
 #shopPanel.open {
   transform: translateX(0); /* Affiche le shop lorsqu'il a la classe "open" */
 }
 
+#shopPanel h3 {
+  color: #ffcc00; /* Titre en jaune doré */
+  text-align: center;
+  font-family: "Press Start 2P", monospace; /* Police rétro */
+  margin-bottom: 1rem;
+}
+
+#shopPanel button {
+  font-family: "Press Start 2P", monospace;
+  background-color: #ffcc00; /* Boutons actifs en jaune doré */
+  color: #1a1a2e; /* Texte des boutons en bleu foncé */
+  border: 2px solid #4f46e5; /* Bordure bleu électrique */
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+#shopPanel button:hover {
+  background-color: #4f46e5; /* Change la couleur au survol */
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+#shopPanel button:disabled {
+  background-color: #ff5733; /* Boutons désactivés en orange vif */
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+#shopPanel p {
+  font-size: 0.9rem;
+  color: #cccccc; /* Texte gris clair */
+  margin-top: 0.5rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+#kibbleShop {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  ); /* Grille responsive */
+  gap: 1rem; /* Espacement entre les éléments */
+  padding: 1rem; /* Espacement interne */
+}
+
+.kibble-item {
+  background-color: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+  border: 2px solid #ffcc00; /* Bordure jaune doré */
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kibble-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.kibble-image {
+  width: 48px; /* Taille réduite */
+  height: 48px; /* Taille réduite */
+  margin: 0 auto 0.5rem; /* Centrez l'image et ajoutez un espacement en bas */
+  image-rendering: pixelated; /* Effet pixel art */
+  display: block; /* Assurez-vous que l'image est centrée */
+}
+
+.kibble-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffcc00; /* Jaune doré */
+  margin-bottom: 0.5rem;
+}
+
+.kibble-description {
+  font-size: 0.9rem;
+  color: #cccccc; /* Texte gris clair */
+  margin-bottom: 0.5rem;
+}
+
+.kibble-cost {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff; /* Texte blanc */
+  margin-bottom: 0.5rem;
+}
+
+.kibble-buy-btn {
+  font-family: "Press Start 2P", monospace;
+  background-color: #33ff57; /* Vert vif */
+  color: #1a1a2e; /* Texte bleu foncé */
+  border: 2px solid #ffcc00; /* Bordure jaune doré */
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.kibble-buy-btn:hover {
+  background-color: #ffcc00; /* Jaune doré au survol */
+  color: #1a1a2e;
+  transform: scale(1.05);
+}
+
 #shopToggle {
-  bottom: 6rem; /* Ajustez la position du bouton "Boutique" */
-  right: 2rem;
+  bottom: 2rem; /* Abaissez le bouton pour qu'il soit plus proche du bas */
+  right: 2rem; /* Gardez un espacement cohérent à droite */
+  background-color: #4f46e5; /* Changez le fond en bleu électrique */
+  color: #ffffff; /* Texte blanc pour un bon contraste */
+  border: 2px solid #ffcc00; /* Ajoutez une bordure jaune doré */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Ajoutez une ombre pour le style */
+  padding: 0.8rem; /* Augmentez légèrement le padding pour plus d'espace */
+  border-radius: 50%; /* Gardez le bouton rond */
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+#shopToggle:hover {
+  background-color: #ffcc00; /* Changez le fond en jaune doré au survol */
+  color: #1a1a2e; /* Texte bleu foncé pour un bon contraste */
+  transform: scale(1.1); /* Ajoutez un effet de zoom au survol */
 }
 
 #resetGameBtn {
@@ -347,19 +433,35 @@ html {
   font-weight: 400;
   letter-spacing: 0.5px;
   font-size: 0.9rem;
-  padding: 0.8rem 1.2rem;
-  background: rgba(30, 30, 46, 0.85);
-  border: 2px solid var(--color-primary);
+  padding: 1rem; /* Augmentez le padding pour plus d'espace */
+  background: #ffcc00; /* Fond jaune doré */
+  color: #1a1a2e; /* Texte bleu foncé */
+  border: 2px solid #4f46e5; /* Bordure bleu électrique */
+  border-radius: 8px;
+  text-align: center; /* Centre le texte */
+  display: flex; /* Utilisez flexbox pour aligner le contenu */
+  flex-direction: column; /* Place le contenu en colonne */
+  justify-content: center; /* Centre verticalement */
+  align-items: center; /* Centre horizontalement */
   transition: all 0.2s ease;
+  overflow: hidden; /* Empêche le dépassement du texte */
+  word-wrap: break-word; /* Coupe les mots si nécessaire */
 }
 
 .upgrade-btn:hover {
-  background: rgba(55, 55, 85, 0.9);
+  background: #4f46e5; /* Fond bleu électrique au survol */
+  color: #ffffff; /* Texte blanc */
   transform: translateY(-3px);
 }
 
 .upgrade-btn:active {
   transform: translateY(2px) scale(0.98);
+}
+
+.upgrade-btn:disabled {
+  background: #ff5733; /* Fond orange vif pour les boutons désactivés */
+  color: #ffffff;
+  cursor: not-allowed;
 }
 
 /* ==================== */
@@ -395,6 +497,15 @@ html {
   .game-header {
     margin-top: 5rem; /* Plus d'espace pour les petits écrans */
   }
+
+  .kibble-image {
+    width: 32px; /* Taille encore plus petite sur mobile */
+    height: 32px;
+  }
+
+  .kibble-item {
+    padding: 0.8rem; /* Réduisez le padding sur mobile */
+  }
 }
 
 @media (min-width: 768px) {
@@ -419,7 +530,6 @@ html {
     max-width: 600px;
   }
 }
-
 /* Affiche le shop en permanence sur desktop */
 @media (min-width: 1024px) {
   #shopPanel {

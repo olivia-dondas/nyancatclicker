@@ -179,7 +179,7 @@ function loadKibbleShop() {
         }" class="max-h-full max-w-full object-contain">
                     <h4 class="text-lg font-bold">${kibble.name}</h4>
                     <p class="text-sm">${kibble.description}</p>
-                    <p class="text-yellow-300">Coût: ${
+                    <p class="text-yellow-300">Prix: ${
                       kibble.cost
                     } croquettes</p>
                     <button class="buy-kibble-btn mt-2 px-4 py-2 rounded-lg transition-colors 

@@ -19,6 +19,15 @@
       href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      .kibble-image {
+        width: 48px; /* Réduisez encore la largeur */
+        height: 48px; /* Réduisez encore la hauteur */
+        margin: 0 auto 0.5rem; /* Centrez l'image et ajoutez un espacement en bas */
+        image-rendering: pixelated; /* Effet pixel art */
+        display: block; /* Assurez-vous que l'image est centrée */
+      }
+    </style>
   </head>
   <body class="bg-gray-900 text-white">
     <audio id="backgroundMusic" loop>
@@ -65,9 +74,9 @@
 
         <button
           id="shopToggle"
-          class="md:hidden fixed right-4 bottom-4 bg-yellow-400 text-gray-900 p-4 rounded-full z-50 shadow-lg hover:bg-yellow-500 transition-all"
+          class="fixed right-4 bottom-4 bg-yellow-400 text-gray-900 p-4 rounded-full z-50 shadow-lg hover:bg-yellow-500 transition-all"
         >
-          🛍️ Boutique
+          Boutique
         </button>
 
         <aside
@@ -84,22 +93,16 @@
           <h3 class="text-2xl font-bold mb-6 text-center">Boutique</h3>
 
           <div class="space-y-4">
-            <button
-              id="autoClickerBtn"
-              class="upgrade-btn w-full bg-cyan-600 hover:bg-cyan-700 p-4 rounded-xl"
-            >
+            <button id="autoClickerBtn" class="upgrade-btn w-full">
               <div class="font-bold text-lg">🐾 AutoClicker</div>
-              <div>Coût : 50 croquettes</div>
-              <div>Possédé : <span id="autoClickers">0</span></div>
+              <div>Prix : 50 croquettes</div>
+              <div>Quantité : <span id="autoClickers">0</span></div>
             </button>
 
-            <button
-              id="doubleClickerBtn"
-              class="upgrade-btn w-full bg-cyan-600 hover:bg-cyan-700 p-4 rounded-xl"
-            >
+            <button id="doubleClickerBtn" class="upgrade-btn w-full">
               <div class="font-bold text-lg">⚡ DoubleClicker</div>
-              <div>Coût : 100 croquettes</div>
-              <div>Possédé : <span id="doubleClicker">0</span></div>
+              <div>Prix : 100 croquettes</div>
+              <div>Quantité : <span id="doubleClicker">0</span></div>
             </button>
 
             <button
@@ -107,19 +110,31 @@
               class="upgrade-btn w-full bg-cyan-600 hover:bg-cyan-700 p-4 rounded-xl"
             >
               <div class="font-bold text-lg">✨ Multiplicateur</div>
-              <div>Coût : <span id="multiplierCost">200</span> croquettes</div>
-              <div>Possédé : <span id="multipliers">0</span></div>
+              <div>Prix : <span id="multiplierCost">200</span> croquettes</div>
+              <div>Quantité : <span id="multipliers">0</span></div>
             </button>
+            <p class="text-sm text-gray-300 mt-2">
+              Le multiplicateur augmente la valeur de chaque clic. Plus vous en
+              achetez, plus vos clics rapportent de croquettes !
+            </p>
           </div>
 
           <div class="upgrade-item mt-6">
-            <h3 class="text-xl font-bold mb-4 text-center">
-              Boutique de Skins
-            </h3>
-            <div id="kibbleShop" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Les skins seront chargés ici -->
-              <div class="text-center p-4 bg-purple-900 rounded-lg">
-                Chargement des skins...
+            <h3 class="text-xl font-bold mb-4 text-center">Épicerie</h3>
+            <div
+              id="kibbleShop"
+              class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4"
+            >
+              <div class="kibble-item">
+                <img
+                  src="assets/kibble/default.png"
+                  alt="Croquette Nyan Cat"
+                  class="kibble-image"
+                />
+                <h4 class="kibble-name"></h4>
+                <p class="kibble-description"></p>
+                <div class="kibble-cost"></div>
+                <button class="kibble-buy-btn"></button>
               </div>
             </div>
           </div>
