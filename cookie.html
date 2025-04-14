@@ -25,6 +25,18 @@
       <source src="assets/sounds/NyanCatTheme.mp3" type="audio/mpeg" />
     </audio>
 
+    <!-- Barre de navigation   <nav class="bg-gray-800 text-white p-4 shadow-lg">
+      <ul class="flex justify-around">
+        <li><a href="#kibble" class="hover:text-yellow-400">Jouer</a></li>
+        <li><a href="#shopPanel" class="hover:text-yellow-400">Boutique</a></li>
+        <li>
+          <a href="#resetGameBtn" class="hover:text-yellow-400"
+            >Réinitialiser</a
+          >
+        </li>
+      </ul>
+    </nav> -->
+
     <div class="game-container">
       <div class="flex flex-col md:flex-row min-h-screen">
         <main class="flex-1 p-4 md:w-3/4">
@@ -33,9 +45,9 @@
               🐾 Nyan Cat Clicker 🐾
             </h1>
             <h2
-              class="text-2xl font-bold my-4 p-4 text-center bg-gray-800 text-yellow-300 rounded-lg shadow-lg"
+              class="text-md font-bold p-4 text-center bg-gray-800 text-yellow-300 rounded-lg shadow-lg"
             >
-              Croquettes collectées : <span id="kibbleCount">0</span>
+              Croquettes : <span id="kibbleCount">0</span>
             </h2>
           </div>
           <section
@@ -53,14 +65,14 @@
 
         <button
           id="shopToggle"
-          class="md:hidden fixed right-4 bottom-4 bg-purple-700 p-4 rounded-full z-50"
+          class="md:hidden fixed right-4 bottom-4 bg-yellow-400 text-gray-900 p-4 rounded-full z-50 shadow-lg hover:bg-yellow-500 transition-all"
         >
-          🛍️
+          🛍️ Boutique
         </button>
 
         <aside
           id="shopPanel"
-          class="fixed inset-y-0 right-0 w-96 bg-purple-900 p-6 md:relative z-40 overflow-y-auto"
+          class="bg-purple-900 p-6 z-40 overflow-y-auto"
           style="height: 100vh"
         >
           <button
@@ -69,9 +81,7 @@
           >
             Retour
           </button>
-          <h3 class="text-2xl font-bold mb-6 text-center hidden md:block">
-            Boutique
-          </h3>
+          <h3 class="text-2xl font-bold mb-6 text-center">Boutique</h3>
 
           <div class="space-y-4">
             <button

@@ -133,6 +133,13 @@ body {
   touch-action: manipulation;
 }
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Assurez-vous que le body et html occupent toute la hauteur */
+}
+
 /* ==================== */
 /* ÉLÉMENTS DE JEU PRINCIPAUX */
 /* ==================== */
@@ -235,14 +242,35 @@ body {
 }
 
 #shopPanel {
+  position: fixed;
+  top: 0; /* Place le panel en haut de la fenêtre */
+  right: 0;
+  margin: 0; /* Supprime toute marge résiduelle */
+  padding-top: 20px;
+  width: 100%; /* Par défaut, occupe toute la largeur sur mobile */
+  max-width: 400px; /* Limite la largeur sur desktop */
+  height: 100vh; /* Occupe toute la hauteur de la fenêtre */
+  background-color: rgba(20, 20, 30, 0.95); /* Fond sombre */
   transform: translateX(
     100%
   ); /* Masque le shop en le déplaçant hors de l'écran */
   transition: transform 0.3s ease-in-out;
+  z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
+  overflow-y: auto; /* Permet le défilement si le contenu dépasse la hauteur */
 }
 
 #shopPanel.open {
   transform: translateX(0); /* Affiche le shop lorsqu'il a la classe "open" */
+}
+
+#shopToggle {
+  bottom: 6rem; /* Ajustez la position du bouton "Boutique" */
+  right: 2rem;
+}
+
+#resetGameBtn {
+  bottom: 2rem; /* Placez le bouton "Réinitialiser" plus bas */
+  left: 2rem;
 }
 
 /* ==================== */
@@ -392,9 +420,31 @@ body {
   }
 }
 
+/* Affiche le shop en permanence sur desktop */
+@media (min-width: 1024px) {
+  #shopPanel {
+    position: relative; /* Change la position pour qu'il soit intégré au layout */
+    transform: translateX(0); /* Toujours visible */
+    width: 25%; /* Ajustez la largeur pour desktop */
+    max-width: none; /* Supprime la limite de largeur */
+    height: auto; /* Ajuste la hauteur automatiquement */
+    background-color: rgba(20, 20, 30, 0.95); /* Fond sombre */
+    z-index: 1; /* Assurez-vous qu'il est visible */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajoute une ombre pour le style */
+  }
+
+  #shopToggle {
+    display: none; /* Cache le bouton "Boutique" sur desktop */
+  }
+
+  #closeShopBtn {
+    display: none; /* Masque le bouton "Retour" sur desktop */
+  }
+}
+
 /* ==================== */
 /* GAME CONTAINER */
 /* ==================== */
 .game-container {
-  padding-top: 3rem; /* Ajoute un espacement supérieur global */
+  height: 100%; /* Assurez-vous que le conteneur principal occupe toute la hauteur */
 }
