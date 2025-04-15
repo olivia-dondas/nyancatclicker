@@ -1,35 +1,59 @@
 # 🎮 NyanCat Clicker Game
 
-Bienvenue dans **NyanCat Clicker**, un jeu inspiré de Nyan Cat où l'objectif est de cliquer sur des croquettes, gagner des points et débloquer des skins pour personnaliser ton jeu ! 🚀
+[![Déployé avec succès](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Folivia-dondas.students-laplateforme.io%2Fnyancat%2Fcookie.html)](https://olivia-dondas.students-laplateforme.io/nyancat/cookie.html)
+
+Bienvenue dans **NyanCat Clicker**, un jeu fun et coloré où tu cliques sur des croquettes pour gagner des points, débloquer des skins et améliorer ton score ! 🚀
+
+---
+
+## 🔗 Accéder au jeu
+
+👉 **[Clique ici pour jouer](https://olivia-dondas.students-laplateforme.io/nyancat/cookie.html)**
+
+Déployé via **Plesk** et **MAMP** sur mon domaine étudiant.
+
+---
+
+## 🖼️ Aperçu du jeu
+
+![Screenshot NyanCat Clicker](screenshot.png) <!-- Tu peux remplacer "screenshot.png" par le nom réel de l’image si tu l’ajoutes dans le repo -->
 
 ---
 
 ## 🕹️ Fonctionnalités
 
-- **Croquettes (Kibbles)** : Les croquettes apparaissent à l'écran et peuvent être collectées en cliquant dessus !
-- **Skins** : Collectionne des skins pour tes croquettes grâce à des points gagnés en jouant.
-- **Auto-clickers** : Améliore ton jeu avec des auto-clickers et double-clickers pour récolter encore plus de croquettes !
-- **Particules Animées** : Chaque clic génère des particules animées pour une expérience visuelle fun et dynamique.
-- **Stockage local** : Toutes tes données (points, skins) sont sauvegardées dans le stockage local du navigateur pour ne rien perdre entre les sessions.
-- **Responsive Design** : Le jeu est entièrement responsive pour jouer sur n'importe quel appareil (ordinateur, tablette, téléphone).
-  
+- 🐟 **Croquettes (Kibbles)** : Clique pour les attraper et marque des points !
+- 🎨 **Skins** : Débloque des apparences stylées pour tes croquettes.
+- ⚙️ **Auto-clickers & double-clickers** : Pour faire grimper ton score automatiquement.
+- ✨ **Particules animées** : Chaque clic déclenche un effet visuel dynamique.
+- 💾 **Stockage local** : Tes progrès sont sauvegardés directement dans ton navigateur.
+- 📱 **Responsive design** : Joue sur tous tes appareils.
+
 ---
 
 ## 🛠️ Technologies utilisées
 
-- **HTML5** pour la structure du jeu
-- **CSS3** pour la mise en forme et les animations
-- **JavaScript** pour la logique du jeu, gestion des clics et des skins
-- **JSON** pour gérer les données des croquettes et des skins
-- **Bootstrap 5** pour la mise en page responsive
+- **HTML5**  
+- **CSS3** (avec animations + Bootstrap 5)  
+- **JavaScript** (DOM, classes, localStorage, JSON)  
+- **MAMP** (en local) + **Plesk / Cyberduck** (pour le déploiement)  
 
 ---
 
 ## 🎨 Comment jouer
 
-1. **Clickez sur les croquettes !** Chaque clic sur une croquette vous rapportera des points.
-2. **Achetez des skins pour personnaliser vos croquettes.** Utilisez vos points pour débloquer de nouveaux skins.
-3. **Améliorez votre jeu avec des auto-clickers et des double-clickers.** Ces améliorations vous aideront à récolter plus de croquettes plus rapidement.
-4. **Collectez des croquettes et regardez les particules animées voler partout !** Chaque clic produit un effet visuel sympa.
+1. Clique sur les croquettes pour marquer des points.
+2. Utilise tes points pour acheter des skins et des améliorations.
+3. Profite des particules animées et des surprises visuelles !
+4. Gagne en puissance avec les améliorations automatiques.
+
+---
+
+## 📬 Contact
+
+Créé par **Olivia Dondas**  
+📍 Étudiante à La Plateforme, Marseille  
+💌 [LinkedIn (optionnel)](https://linkedin.com/in/tonprofil)  
+🌐 Projet hébergé sur [olivia-dondas.students-laplateforme.io](https://olivia-dondas.students-laplateforme.io/nyancat/cookie.html)
 
 ---
