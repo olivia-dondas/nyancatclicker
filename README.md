@@ -53,7 +53,7 @@ Déployé via **Plesk** et **MAMP** sur mon domaine étudiant.
 
 Créé par **Olivia Dondas**  
 📍 Étudiante à La Plateforme, Marseille  
-💌 [LinkedIn (optionnel)](https://linkedin.com/in/tonprofil)  
+💌 [LinkedIn](https://linkedin.com/in/olivia-dondas)  
 🌐 Projet hébergé sur [olivia-dondas.students-laplateforme.io](https://olivia-dondas.students-laplateforme.io/nyancat/cookie.html)
 
 ---
