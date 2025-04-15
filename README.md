@@ -16,7 +16,7 @@ Déployé via **Plesk** et **MAMP** sur mon domaine étudiant.
 
 ## 🖼️ Aperçu du jeu
 
-![Screenshot NyanCat Clicker](screenshot.png) <!-- Tu peux remplacer "screenshot.png" par le nom réel de l’image si tu l’ajoutes dans le repo -->
+![Screenshot NyanCat Clicker](snapcat.png) <!-- Tu peux remplacer "screenshot.png" par le nom réel de l’image si tu l’ajoutes dans le repo -->
 
 ---
 
